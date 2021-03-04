@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />-->
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                color: #333;
+            }
+
+            form {
+                background-color: #eee;
+                width: 300px;
+                padding: 50px;
+                padding-top: 40px;
+                margin: 100px auto 100px auto;
+            }
+
+            form * {
+                width: calc(100% - 20px);
+                border: 0px;
+            }
+
+            form div {
+                padding-bottom: 30px;
+                font-size: 20px;
+                color: #777;
+            }
+
+            form input {
+                padding: 10px;
+                margin-bottom: 3px;
+            }
+
+            form textarea {
+                resize: vertical;
+                padding: 10px;
+                min-height: 100px;
+                margin-bottom: 3px;
+            }
+
+            form button {
+                padding: 10px;
+                background-color: #ddd;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            tr:nth-child(odd) {
+                background-color: #eee;
+            }
+
+            td {
+                padding: 5px;
+            }
+
+            tr:first-child {
+                background-color: #ddd;
+            }
+
+        </style>
+    </head>
+    <body>
+        <form action="./insert" method="POST">
+            <div>Suggestion box</div>
+            <input placeholder="Title" name="title" required />
+            <input placeholder="Your name (optional)" name="author" />
+            <textarea name="text" required></textarea>
+            
+            <button type="submit">Send suggestion</button>
+        </form>
+
+        <table>
+            <tr>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Date</td>
+                <td>Text</td>
+                <td>Status</td>
+            </tr>
+            {% for s in suggestions %}
+            <tr>
+                {% for elem in s %}
+                <td>
+                    {{elem}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
